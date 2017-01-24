@@ -8,7 +8,6 @@ $data->read('DatosClientes.xls');
 		
 //Y mostramos los datos en forma de tabla
 
-/* 
 echo("<table>");
 for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
 	echo("<tr>");
@@ -18,9 +17,9 @@ for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
 	echo("</tr>");	
 }
 echo("</table>");
-*/
 
-// Conectamos con la base de datos
+
+// Conectamos con la base de datos si quieremos meter los datos de la hoja de cálculo
 
 $dbhost="localhost";  	// host del MySQL (generalmente localhost)
 $dbusuario="root"; 		// aqui debes ingresar el nombre de usuario para acceder a la base
@@ -47,7 +46,16 @@ for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 	echo $fila, " - ", $vcodcliente, $vrazon, $vdireccion, $vcodigopostal, $vpoblacion, $vprovincia, $vtelefono, $vrotulo, $vnif;  
 	echo("</tr>");echo("<BR>");
 
+	// Aquí añadidos a la tabla los registros
+
+	$result = mysql_query("INSERT INTO clientes (codcli, razon, direccion, codigopostal, poblacion, provincia, telefono, rotulo, nif, DtoFamilia01, DtoFamilia02, DtoFamilia03, DtoFamilia04, DtoFamilia05, DtoFamilia06, DtoFamilia07, DtoFamilia08, DtoFamilia09, DtoFamilia10) VALUES ('$vcodcliente', '$vrazon', '$vdireccion', '$vcodigopostal', '$vpoblacion', '$vprovincia', '$vtelefono', '$vrotulo', '$nif','0','0','0','0','0','0','0','0','0','0')", $conexion);
+	if (!$result) {
+    				die('Consulta no válida: '.mysql_error());
+	}
+
 }
+
+
 
 // Cerramos la base de datos
 mysql_close($conexion);
