@@ -30,7 +30,7 @@ $conexion = mysql_connect($dbhost, $dbusuario, $dbpassword);
 mysql_select_db($db, $conexion);
 
 
-// Leemos el documento EXCEL y cada línea la introducimos en la base de datos creada
+// Leemos el documento EXCEL 
 
 for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 	echo("<tr>");
@@ -46,7 +46,7 @@ for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 	echo $fila, " - ", $vcodcliente, $vrazon, $vdireccion, $vcodigopostal, $vpoblacion, $vprovincia, $vtelefono, $vrotulo, $vnif;  
 	echo("</tr>");echo("<BR>");
 
-	// Aquí añadidos a la tabla los registros
+	// Aquí cada línea que obtenemos de la hoja excel la introducimos en la base de datos MySQL
 
 	$result = mysql_query("INSERT INTO clientes (codcli, razon, direccion, codigopostal, poblacion, provincia, telefono, rotulo, nif, DtoFamilia01, DtoFamilia02, DtoFamilia03, DtoFamilia04, DtoFamilia05, DtoFamilia06, DtoFamilia07, DtoFamilia08, DtoFamilia09, DtoFamilia10) VALUES ('$vcodcliente', '$vrazon', '$vdireccion', '$vcodigopostal', '$vpoblacion', '$vprovincia', '$vtelefono', '$vrotulo', '$nif','0','0','0','0','0','0','0','0','0','0')", $conexion);
 	if (!$result) {
@@ -54,7 +54,6 @@ for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 	}
 
 }
-
 
 
 // Cerramos la base de datos
