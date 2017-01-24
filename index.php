@@ -6,7 +6,7 @@ $data->setOutputEncoding('CP1251'); // Character Encodings - Legacy Encodings - 
 $data->read('DatosClientes.xls');
 
 		
-//Y mostramos los datos en forma de tabla
+// Mostramos los datos en forma de tabla por medio de un bucle for
 
 echo("<table>");
 for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
@@ -19,7 +19,7 @@ for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
 echo("</table>");
 
 
-// Conectamos con la base de datos si quieremos meter los datos de la hoja de cálculo
+// Conectamos con la base de datos 
 
 $dbhost="localhost";  	// host del MySQL (generalmente localhost)
 $dbusuario="root"; 		// aqui debes ingresar el nombre de usuario para acceder a la base
@@ -30,7 +30,7 @@ $conexion = mysql_connect($dbhost, $dbusuario, $dbpassword);
 mysql_select_db($db, $conexion);
 
 
-// Leemos el documento EXCEL 
+// Otra manera de leer el documento EXCEL y cada línea la introducimos en la base de datos creada
 
 for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 	echo("<tr>");
