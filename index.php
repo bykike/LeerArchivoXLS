@@ -1,39 +1,34 @@
-<?php
-require_once 'Excel/reader.php';
-
-$data = new Spreadsheet_Excel_Reader();
-$data->setOutputEncoding('CP1251'); // Character Encodings - Legacy Encodings - CP1251
-
-//$data->read('DatosClientes.xls');
-//$data->read('Datos24012017053710Clientes.xls');
-$data->read('ClientesUT8.xls');
-
-
-?>
 <html>
 <head>
     <meta charset="utf-8">
     <title>Leer XLS</title>
-    
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
-    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style type="text/css"></style>
 
-    <style type="text/css">     
-    </style>
+  
 
-
+    <?php
     
+      require_once 'Excel/reader.php';
+
+
+      $data = new Spreadsheet_Excel_Reader();
+      $data->setOutputEncoding('CP1251'); // Character Encodings - Legacy Encodings - CP1251
+      $data->read('ClientesUT8.xls');
+
+
+    ?>
+
+ 
 </head>
     <body>
         <div class="table-responsive">
         <table class="table table-bordered">
 <?php      
 
-
-
     # Conexión base de datos MySql
-    $link = mysqli_connect("localhost","root","","");
+    $link = mysqli_connect("localhost","root","root","PCRClientes2");
     if (mysqli_connect_errno()) {
                 die("Error al conectar: ".mysqli_connect_error());
         }
@@ -76,17 +71,17 @@ while (($fila = mysqli_fetch_array($result))!=NULL){
 */
             
 
+
 # Leer el documento EXCEL y cada línea la introducimos en la base de datos creada
 
 for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
-	echo("<tr>");
+
 	$vcodcliente = $data->sheets[0]['cells'][$fila][1]; 
 	$vrazon = $data->sheets[0]['cells'][$fila][2]; 
 	$vdireccion = $data->sheets[0]['cells'][$fila][3];
 	$vcodigopostal = $data->sheets[0]['cells'][$fila][4];
     
 	$vpoblacion = $data->sheets[0]['cells'][$fila][5];
-    iconv("CP1251", "utf-8", $vpoblacion);
     
 	$vprovincia = $data->sheets[0]['cells'][$fila][6];
 	$vtelefono = $data->sheets[0]['cells'][$fila][7];
