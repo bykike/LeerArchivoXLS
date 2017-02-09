@@ -33,7 +33,7 @@
                 die("Error al conectar: ".mysqli_connect_error());
         }
         
-//$tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
+$tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 /*
 $result = mysqli_query($link, "SELECT * FROM Clientes");
 
@@ -112,14 +112,14 @@ for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
             $vrotulo,
             $vnif);
     
-        /*
+        
         # Enviamos toda la infomación a la base de datos
         $sql="INSERT INTO Clientes (codcli, razon, direccion, codigopostal, poblacion, provincia, telefono, rotulo, nif, DtoFamilia01, DtoFamilia02, DtoFamilia03, DtoFamilia04, DtoFamilia05, DtoFamilia06, DtoFamilia07, DtoFamilia08, DtoFamilia09, DtoFamilia10)
         VALUES ('$vcodcliente', '$vrazon', '$vdireccion', '$vcodigopostal', '$vpoblacion', '$vprovincia', '$vtelefono', '$vrotulo', '$vnif','0','0','0','0','0','0','0','0','0','0')";
 
         # Escribimos el registro correspondiente al índice de $fila en la base de datos
         $result = mysqli_query($link, $sql);
-        */
+        
 
 }
 
