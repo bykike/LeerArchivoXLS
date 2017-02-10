@@ -6,17 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <style type="text/css"></style>
 
-  
 
     <?php
     
       require_once 'Excel/reader.php';
 
-
       $data = new Spreadsheet_Excel_Reader();
       $data->setOutputEncoding('CP1251'); // Character Encodings - Legacy Encodings - CP1251
       $data->read('ClientesUT8.xls');
-
 
     ?>
 
@@ -25,7 +22,8 @@
     <body>
         <div class="table-responsive">
         <table class="table table-bordered">
-<?php      
+
+    <?php      
 
     # Conexión base de datos MySql
     $link = mysqli_connect("localhost","root","root","PCRClientes2");
@@ -83,7 +81,7 @@
         $result = mysqli_query($link, $sql);
         
 
-}
+    }
 
 
 
@@ -91,7 +89,7 @@
     $close = mysqli_close($link) 
      or die("Ha sucedido un error inexperado en la desconexion de la base de datos");
 
-?>
+    ?>
         </table>
         </div>
     </body>
