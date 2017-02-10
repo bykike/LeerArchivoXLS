@@ -33,84 +33,46 @@
                 die("Error al conectar: ".mysqli_connect_error());
         }
         
-$tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
-/*
-$result = mysqli_query($link, "SELECT * FROM Clientes");
-
-while (($fila = mysqli_fetch_array($result))!=NULL){
-
-               printf("<tr> 
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-               <td>%s</td>
-                    </tr>",          
-                $fila['codcli'], $fila['razon'], $fila['direccion'], $fila['codigopostal'], $fila['poblacion'], $fila['provincia'], 
-                $fila['telefono'], $fila['rotulo'], $fila['nif'], 
-                $fila['DtoFamilia01'], $fila['DtoFamilia02'], $fila['DtoFamilia03'], $fila['DtoFamilia04'], $fila['DtoFamilia05'], $fila['DtoFamilia06'], $fila['DtoFamilia07'], $fila['DtoFamilia08'], $fila['DtoFamilia09'], $fila['DtoFamilia10']);
-
-                }
-
-            # Libero la memoria asociada a result y cierro base de datos
-            mysqli_free_result($result);
-*/
-            
+      $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 
 
-# Leer el documento EXCEL y cada línea la introducimos en la base de datos creada
+      # Leer el documento EXCEL y cada línea la introducimos en la base de datos creada
 
-for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
+      for ($fila = 1; $fila <= $data->sheets[0]['numRows']; $fila++) {
 
-	$vcodcliente = $data->sheets[0]['cells'][$fila][1]; 
-	$vrazon = $data->sheets[0]['cells'][$fila][2]; 
-	$vdireccion = $data->sheets[0]['cells'][$fila][3];
-	$vcodigopostal = $data->sheets[0]['cells'][$fila][4];
-    
-	$vpoblacion = $data->sheets[0]['cells'][$fila][5];
-    
-	$vprovincia = $data->sheets[0]['cells'][$fila][6];
-	$vtelefono = $data->sheets[0]['cells'][$fila][7];
-	$vrotulo = $data->sheets[0]['cells'][$fila][8];
-	$vnif = $data->sheets[0]['cells'][$fila][9];
+      	$vcodcliente = $data->sheets[0]['cells'][$fila][1]; 
+      	$vrazon = $data->sheets[0]['cells'][$fila][2]; 
+      	$vdireccion = $data->sheets[0]['cells'][$fila][3];
+      	$vcodigopostal = $data->sheets[0]['cells'][$fila][4];     
+      	$vpoblacion = $data->sheets[0]['cells'][$fila][5];      
+      	$vprovincia = $data->sheets[0]['cells'][$fila][6];
+      	$vtelefono = $data->sheets[0]['cells'][$fila][7];
+      	$vrotulo = $data->sheets[0]['cells'][$fila][8];
+      	$vnif = $data->sheets[0]['cells'][$fila][9];
 
-    printf("<tr>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td>%s</td>
-            <td></td>
-           </tr>",
-            $fila, 
-            $vcodcliente, 
-            $vrazon,
-            $vdireccion,
-            $vcodigopostal, 
-            $vpoblacion, 
-            $vprovincia, 
-            $vtelefono,
-            $vrotulo,
-            $vnif);
+        printf("<tr>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td>%s</td>
+                <td></td>
+               </tr>",
+                $fila, 
+                $vcodcliente, 
+                $vrazon,
+                $vdireccion,
+                $vcodigopostal, 
+                $vpoblacion, 
+                $vprovincia, 
+                $vtelefono,
+                $vrotulo,
+                $vnif);
     
         
         # Enviamos toda la infomación a la base de datos
